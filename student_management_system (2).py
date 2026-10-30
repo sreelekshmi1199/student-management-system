@@ -1,16 +1,3 @@
-"""
-Student Management System
--------------------------
-Command-line app using SQLite with:
-  - auto-created database, 3 related tables (PK + FK)
-  - registration / login / logout (salted PBKDF2 password hashing)
-  - role-based authorization (admin, staff, student)
-  - full CRUD, input validation, exception handling
-
-Default admin account (created on first run):
-    username: admin      password: Admin@123
-"""
-
 import functools
 import hashlib
 import hmac
