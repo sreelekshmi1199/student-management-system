@@ -4,38 +4,15 @@
 A command-line **Student Management System** written in Python with an **SQLite** database. It includes user registration and login, role-based access control (Admin, Staff, Student), full CRUD operations, input validation and exception handling.
 
 ---
-
-## Table of Contents
-
-1. [Features](#features)
-2. [Technologies Used](#technologies-used)
-3. [Project Structure](#project-structure)
-4. [How to Run](#how-to-run)
-5. [Default Login](#default-login)
-6. [Menu Guide](#menu-guide)
-7. [User Roles and Permissions](#user-roles-and-permissions)
-8. [Database Design](#database-design)
-9. [Input Validation](#input-validation)
-10. [Exception Handling](#exception-handling)
-11. [SQL Operations Used](#sql-operations-used)
-12. [Sample Demo Flow](#sample-demo-flow)
-13. [Project Requirements Checklist](#project-requirements-checklist)
-14. [Known Limitations](#known-limitations)
-15. [Author](#author)
-
----
-
 ## Features
 
-- SQLite database that is **created automatically** on first run
-- **3 related tables** using primary keys and foreign keys
 - User **registration, login and logout**
 - Passwords stored as **salted PBKDF2-SHA256 hashes** (never as plain text)
 - **Role-based authorization** with three roles: Admin, Staff, Student
 - Full **CRUD** for students and courses; user management for admins
 - **Menu-driven** interface with a main menu, login menu and role-specific menus
 - Validation of every user input
-- Exception handling so the program does not crash on bad input or database errors
+
 
 ---
 
@@ -44,7 +21,6 @@ A command-line **Student Management System** written in Python with an **SQLite*
 | Item | Details |
 |------|---------|
 | Language | Python 3.8 or newer |
-| Database | SQLite (`sqlite3` module) |
 | Libraries | Standard library only: `sqlite3`, `hashlib`, `hmac`, `os`, `re`, `functools`, `sys` |
 | IDE | PyCharm (works in any terminal as well) |
 
@@ -159,10 +135,6 @@ After a successful login, the same screen stays open with a line showing who is 
 
 ---
 
-## Database Design
-
-The database file is `student_management.db`. Foreign key enforcement is turned on with `PRAGMA foreign_keys = ON`.
-
 ### Tables
 
 **users**
@@ -229,11 +201,6 @@ The program checks input before using it and asks again when it is invalid.
 ## Exception Handling
 
 A custom `@safe` decorator wraps each database-related function in a `try/except` block:
-
-| Error type | What happens |
-|------------|--------------|
-| `sqlite3.IntegrityError` | Duplicate or linked-record problem: the change is rolled back and a message is shown |
-| `sqlite3.Error` | Other database errors: rolled back and a message is shown |
 | Any other `Exception` | An "Unexpected error" message is shown |
 | `ValueError` (invalid numbers) | Handled in the input functions, which ask again |
 | `Ctrl + C` / end of input | The program exits politely |
@@ -266,37 +233,3 @@ All queries use **parameterized statements** (`?` placeholders) to prevent SQL i
 6. Choose **10. Logout**, then log in as the staff user and try **4. Delete Student** to see *Access denied*.
 7. Log out, then register a student account from the Login Menu and log in to see the student menu.
 8. Choose **5. Exit** to close the program.
-
----
-
-## Project Requirements Checklist
-
-| # | Requirement | Status |
-|---|-------------|:------:|
-| 1 | SQLite database, created automatically | ✅ |
-| 2 | Minimum 2 related tables with primary and foreign keys (3 used) | ✅ |
-| 3 | User registration, login and logout | ✅ |
-| 4 | Role-based authorization with at least 2 roles (3 used) | ✅ |
-| 5 | Full CRUD with permission checks | ✅ |
-| 6 | Foreign key relationships keeping data consistent | ✅ |
-| 7 | Menu-driven interface (main, login and role-specific menus, exit) | ✅ |
-| 8 | Input validation | ✅ |
-| 9 | Exception handling | ✅ |
-| 10 | SQL operations: CREATE, INSERT, SELECT, UPDATE, DELETE | ✅ |
-
----
-
-## Known Limitations
-
-- Passwords are visible while typing (a PyCharm console limitation).
-- It is a single-user command-line application with no graphical interface.
-- There is no "forgot password" feature; an admin would need to recreate the account.
-- Student IDs are generated automatically and cannot be chosen by the user.
-
----
-
-## Author
-
-**Name:** _Your Name_
-**Course / Institution:** _Your Course and Institution_
-**Date:** _Date of submission_
